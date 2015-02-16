@@ -1,15 +1,43 @@
 <ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-toggle">
-        Enable Friends
-        <label class="toggle">
-          <input type="checkbox" ng-model="settings.enableFriends">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <div class="button-bar">
+            <button class="button icon-left ion-trash-b" ng-click="OpenLibrary()">OpenLibrary</button>
+            <button class="button icon-left ion-trash-b" ng-click="deleteCache()">DeleteCache</button>
+        </div>
+        <div class="list" ng-repeat="movie in MovieJson | offset: currentPage*itemsPerPage | filter:searchText | limitTo: itemsPerPage" ng-click="Open(movie)">
+            <div class="card" style="max-width:360px;">
+                <div class="item item-divider">
+                    {{movie.title}}
+                </div>
+                <div class="item item-body" style="max-height: 260px; overflow: scroll;">
+                    <div style="width:50%; float:left;">
+                        <img src="{{movie.img}}">
+                        <p>
+                            <a href="#" class="subdued">Rating: {{movie.vote_average}}/10</a>
+                            <a href="#" class="subdued">{{movie.quality}}</a>
+                        </p>
+                    </div>
+                    <div style="width:50%; float:left;">
+                        <p style="margin:0 !important; padding:0px">{{movie.overview}}</p>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-thumbsup"></i>
+                        Like
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-chatbox"></i>
+                        Comment
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-share"></i>
+                        Share
+                    </a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>
